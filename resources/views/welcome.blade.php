@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+<x-app-layout>
+    Wooowww
+</x-app-layout>
+
+
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -8,6 +13,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+        
 
         <!-- Styles -->
         <style>
@@ -129,4 +135,4 @@
             </div>
         </div>
     </body>
-</html>
+</html> --}}
