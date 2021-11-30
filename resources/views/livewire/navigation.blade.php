@@ -55,7 +55,7 @@
                             aria-current="page">Dashboard</a> --}}
 
                         @foreach ($categories as $category)
-                            <a href="#"
+                            <a href="{{route('posts.category', $category)}}"
                                 class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{ $category->name }}</a>
                         @endforeach
 
@@ -93,15 +93,15 @@
                         </div>
 
                         <!--
-                                      Dropdown menu, show/hide based on menu state.
-                          
-                                      Entering: "transition ease-out duration-100"
-                                        From: "transform opacity-0 scale-95"
-                                        To: "transform opacity-100 scale-100"
-                                      Leaving: "transition ease-in duration-75"
-                                        From: "transform opacity-100 scale-100"
-                                        To: "transform opacity-0 scale-95"
-                                    -->
+                                          Dropdown menu, show/hide based on menu state.
+                              
+                                          Entering: "transition ease-out duration-100"
+                                            From: "transform opacity-0 scale-95"
+                                            To: "transform opacity-100 scale-100"
+                                          Leaving: "transition ease-in duration-75"
+                                            From: "transform opacity-100 scale-100"
+                                            To: "transform opacity-0 scale-95"
+                                        -->
                         <div x-show="open" x-on:click.away="open = false"
                             class="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
                             role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
@@ -116,7 +116,7 @@
 
                                 <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-gray-700"
                                     role="menuitem" tabindex="-1" id="user-menu-item-2" onclick="event.preventDefault();
-                                                this.closest('form').submit();">Sair</a>
+                                                    this.closest('form').submit();">Sair</a>
 
 
                             </form>
@@ -149,7 +149,7 @@
                 aria-current="page">Dashboard</a> --}}
 
             @foreach ($categories as $category)
-                <a href="#"
+                <a href="{{route('posts.category', $category)}}"
                     class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">{{ $category->name }}</a>
             @endforeach
 
