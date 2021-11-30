@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Laravel')
+@section('title', 'Laravel bolado')
 
 @section('content_header')
-    <h1>Painel</h1>
+    <h1>Mostrar detalhes</h1>
 @stop
 
 @section('content')

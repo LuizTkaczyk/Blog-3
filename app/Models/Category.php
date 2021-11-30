@@ -9,6 +9,14 @@ class Category extends Model
 {
     use HasFactory;
 
+    //campos de categoria a serem enviados ao banco de dados
+    protected $fillable = ['name', 'slug'];
+
+    //função para retornar a url amigavel
+    public function getRouteKeyName(){
+        return 'slug';
+    }
+
     //Relação um para muitos
     public function posts()
     {

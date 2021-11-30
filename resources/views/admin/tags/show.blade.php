@@ -3,7 +3,7 @@
 @section('title', 'Laravel')
 
 @section('content_header')
-    <h1>Painel</h1>
+    <h1>Mostrar detalhes</h1>
 @stop
 
 @section('content')
