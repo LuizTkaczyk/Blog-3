@@ -11,8 +11,8 @@
     <div class="card">
         <div class="card-body">
 
-            {{-- CRIANDO FORMULARIO COM O PACOTE  LARAVEL COLECTIVE --}}
-            {!! Form::open(['route' => 'admin.categories.store']) !!}
+            {{-- CRIANDO FORMULARIO COM O PACOTE  LARAVEL COLLECTIVE --}}
+            {!! Form::open(['route' => 'admin.categories.store','autocomplete'=>'off']) !!}
             <div class="form-group">
                 {!! Form::label('name', 'Nome') !!}
                 {!! Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Digite o nome da categoria']) !!}

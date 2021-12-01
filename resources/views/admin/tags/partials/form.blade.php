@@ -27,7 +27,7 @@
         <option value="red">Vermelho</option>
     </select> --}}
 
-    {!! Form::label('color', 'Cor') !!}
+    {!! Form::label('color', 'Cor:') !!}
     {!! Form::select('color', $colors, null, ['class' => 'form-control']) !!}
 
     @error('color')

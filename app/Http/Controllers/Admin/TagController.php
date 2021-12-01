@@ -73,9 +73,8 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($tag)
+    public function edit(Tag $tag)
     {
-
         $colors = [
             'red' => 'Vermelho',
             'yellow' => 'Amarelo',
@@ -114,6 +113,8 @@ class TagController extends Controller
      */
     public function destroy(Tag $tag)
     {
-        //
+        $tag->delete();
+
+        return redirect()->route('admin.tags.index')->with('info', 'A etiqueta foi excluída com sucesso');
     }
 }

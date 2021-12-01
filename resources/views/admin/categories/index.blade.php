@@ -3,23 +3,22 @@
 @section('title', 'Laravel bolado')
 
 @section('content_header')
+    <a class="btn btn-secondary float-right" href="{{ route('admin.categories.create') }}">Adicionar categoria</a>
     <h1>Lista de categorias</h1>
 @stop
 
 @section('content')
 
     @if (session('info'))
-    <div class="alert alert-success">
-        <strong>{{session('info')}}</strong>
+        <div class="alert alert-success">
+            <strong>{{ session('info') }}</strong>
 
-    </div>
-        
+        </div>
+
     @endif
     <div class="card">
 
-        <div class="card-header">
-            <a class="btn btn-secondary" href="{{route('admin.categories.create')}}">Adicionar categoria</a>
-        </div>
+        
 
         <div class="card-body">
             <table class="table table-striped">

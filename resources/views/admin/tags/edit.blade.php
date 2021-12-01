@@ -21,6 +21,7 @@
 
             {!! Form::model($tag, ['route' => ['admin.tags.update', $tag], 'method' => 'put']) !!}
 
+            {{-- incluindo o form --}}
             @include('admin.tags.partials.form')
 
             {!! Form::submit('Atualizar a tag', ['class' => 'btn btn-primary']) !!}
