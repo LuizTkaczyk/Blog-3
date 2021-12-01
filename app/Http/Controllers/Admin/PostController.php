@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Tag;
+
+use App\Http\Requests\StorePostRequest;
 
 class PostController extends Controller
 {
@@ -20,15 +23,22 @@ class PostController extends Controller
     {
 
         //o método pluck retorna um array apenas com o campo nome dos objetos/posts
-        $categories = Category::pluck('name','id');
+        $categories = Category::pluck('name','id'); //captuando as categorias no banco
+        $tags = Tag::all();
 
-        return view ('admin.posts.create',compact('categories'));
+        return view ('admin.posts.create',compact('categories','tags'));
     }
 
     
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        //
+        $post = Post::create($request->all());
+
+        if($request->tags){
+            $post->tags()->attach($request->tags);
+        }
+
+        return redirect()->route('admin.posts.edit', $post);
     }
 
   
