@@ -85,6 +85,7 @@
             {!! Form::label('file', 'Imagem do post') !!}
             {{-- com 'image/*' ao escolher os arquivos, apareceram somente imagens --}}
             {!! Form::file('file', ['class' => 'form-control-file', 'accept' => 'image/*']) !!}
+            
             @error('file')
                 <span class="text-danger">{{ $message }}</span>
             @enderror

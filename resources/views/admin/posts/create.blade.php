@@ -12,12 +12,12 @@
             {{-- CRIANDO FORMULARIO COM O PACOTE  LARAVEL COLLECTIVE --}}
             {!! Form::open(['route' => 'admin.posts.store', 'autocomplete' => 'off', 'files' => true]) !!}
 
-                {!! Form::hidden('user_id', auth()->user()->id) !!}
-                
-                {{-- trazendo o formulario de partials/form --}}
-                @include('admin.posts.partials.form')
+            {!! Form::hidden('user_id', auth()->user()->id) !!}
 
-                {!! Form::submit('Criar postagem', ['class' => 'btn btn-primary']) !!}
+            {{-- trazendo o formulario de partials/form --}}
+            @include('admin.posts.partials.form')
+
+            {!! Form::submit('Criar postagem', ['class' => 'btn btn-primary']) !!}
 
 
             {!! Form::close() !!}

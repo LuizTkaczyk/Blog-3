@@ -7,13 +7,21 @@
 @stop
 
 @section('content')
+
+    @if (session('info'))
+
+        <div class="alert alert-success">
+            <strong>{{ session('info') }}</strong>
+        </div>
+
+    @endif
     <div class="card">
         <div class="card-body">
             {{-- CRIANDO FORMULARIO COM O PACOTE  LARAVEL COLLECTIVE --}}
             {{-- Para um form de edição usar a diretiva ::model --}}
-            {!! Form::model($post, ['route' => ['admin.posts.update', $post], 'autocomplete' => 'off', 'files' => true,'method' =>'put']) !!}
+            {!! Form::model($post, ['route' => ['admin.posts.update', $post], 'autocomplete' => 'off', 'files' => true, 'method' => 'put']) !!}
 
-            {!! Form::hidden('user_id', auth()->user()->id) !!}
+            {{-- {!! Form::hidden('user_id', auth()->user()->id) !!} --}}
 
             {{-- trazendo o formulario de partials/form --}}
             @include('admin.posts.partials.form')

@@ -10,11 +10,7 @@ class PostRequest extends FormRequest
     //verificando se o usuario está autorizado a realizar uma publicação
     public function authorize()
     {
-        if ($this->user_id == auth()->user()->id) {
-            return true;
-        } else {
-            return false;
-        }
+        return true;
     }
 
 
@@ -25,13 +21,13 @@ class PostRequest extends FormRequest
         //caso o valor de status seja 1
         $rules = [
             'name' => 'required',
-            'slug' => 'required|unique:posts,slug,' . $post->id,
+            'slug' => 'required|unique:posts',
             'status' => 'required|in:1,2', //o campo status aceitará somente os valores 1 e 2
             'file' => 'image'
         ];
 
         if($post){
-            $rules['slug'] = 'required|unique:posts,slug' . $post->id;
+            $rules['slug'] = 'required|unique:posts,slug,' . $post->id;
         }
 
         //caso o valor de status seja 2

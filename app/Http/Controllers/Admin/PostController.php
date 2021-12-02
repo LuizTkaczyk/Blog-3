@@ -51,7 +51,7 @@ class PostController extends Controller
             $post->tags()->attach($request->tags);
         }
 
-        return redirect()->route('admin.posts.edit', $post);
+        return redirect()->route('admin.posts.index', $post);
     }
 
 
@@ -63,19 +63,54 @@ class PostController extends Controller
 
     public function edit(Post $post)
     {
-        $categories = Category::pluck('name', 'id'); //captuando as categorias no banco
+
+        //fazendo a verificação para que um usuario não edite a postagem de outros usuarios (essa autenticação ira vir de PostPolicy)
+        $this->authorize('author', $post);
+
+        $categories = Category::pluck('name', 'id'); //capturando as categorias no banco
         $tags = Tag::all();
-        return view('admin.posts.edit', compact('post','categories','tags'));
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
 
     public function update(PostRequest $request, Post $post)
     {
-        //
+
+        //fazendo a verificação para que um usuario não edite a postagem de outros usuarios (essa autenticação ira vir de PostPolicy)
+        $this->authorize('author', $post);
+        $post->update($request->all());
+
+        if ($request->file('file')) {
+            $url = Storage::put('posts', $request->file('file'));
+
+            if ($post->image) {
+                Storage::delete($post->image->url);
+
+                $post->image->update([
+                    'url' => $url
+                ]);
+            } else {
+                $post->image()->create([
+                    'url' => $url
+                ]);
+            }
+        }
+
+        if ($request->tags) {
+            //metodo attach sempre ira adicionar um valor ao bd, ou seja, usar o sync para sincronizar com o bd
+            $post->tags()->sync($request->tags);
+        }
+
+        return redirect()->route('admin.posts.edit', $post)->with('info', 'O post foi atualizado com sucesso');
     }
 
     public function destroy(Post $post)
     {
-        //
+        //fazendo a verificação para que um usuario não edite a postagem de outros usuarios (essa autenticação ira vir de PostPolicy)
+        $this->authorize('author', $post);
+
+        $post->delete();
+
+        return redirect()->route('admin.posts.index', $post)->with('info', 'O post foi excluido com sucesso');
     }
 }

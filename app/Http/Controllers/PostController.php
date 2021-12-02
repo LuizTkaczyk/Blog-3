@@ -20,6 +20,8 @@ class PostController extends Controller
     public function show(Post $post)
     {
 
+        $this->authorize('published', $post);
+
         // filtrando os posts similares cuja a id da categoria seja igual a id de categoria do post
         $similares = Post::where('category_id', $post->category_id)
             ->where('status', 2)
