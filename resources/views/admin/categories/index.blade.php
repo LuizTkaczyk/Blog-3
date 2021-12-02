@@ -3,7 +3,11 @@
 @section('title', 'Laravel bolado')
 
 @section('content_header')
-    <a class="btn btn-secondary float-right" href="{{ route('admin.categories.create') }}">Adicionar categoria</a>
+
+    @can('admin.categories.create')
+        <a class="btn btn-secondary float-right" href="{{ route('admin.categories.create') }}">Adicionar categoria</a>
+    @endcan
+
     <h1>Lista de categorias</h1>
 @stop
 
@@ -18,7 +22,7 @@
     @endif
     <div class="card">
 
-        
+
 
         <div class="card-body">
             <table class="table table-striped">
@@ -37,17 +41,26 @@
                             <td>{{ $category->name }}</td>
 
                             <td width="10px">
-                                <a class="btn btn-primary btn-sm"
-                                    href="{{ route('admin.categories.edit', $category) }}">Editar</a>
+                                {{-- com a tag can, a opção somente aparecerá para o usuario adm --}}
+                                @can('admin.categories.edit')
+                                    <a class="btn btn-primary btn-sm"
+                                        href="{{ route('admin.categories.edit', $category) }}">Editar</a>
+                                @endcan
+
+
                             </td>
 
                             <td width="10px">
-                                <form action="{{ route('admin.categories.destroy', $category) }}" method="POST">
-                                    @csrf
-                                    @method('delete')
+                                {{-- com a tag can, a opção somente aparecerá para o usuario adm --}}
+                                @can('admin.categories.destroy')
+                                    <form action="{{ route('admin.categories.destroy', $category) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
 
-                                    <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
-                                </form>
+                                        <button type="submit" class="btn btn-danger btn-sm">Excluir</button>
+                                    </form>
+                                @endcan
+
                             </td>
 
                         </tr>

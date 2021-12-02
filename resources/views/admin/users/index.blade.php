@@ -3,11 +3,11 @@
 @section('title', 'Laravel')
 
 @section('content_header')
-    <h1>Mostrar detalhes</h1>
+    <h1>Lista de usuarios</h1>
 @stop
 
 @section('content')
-    <p>Bem vindo ao painel de administração.</p>
+    @livewire('admin.user-index')
 @stop
 
 @section('css')

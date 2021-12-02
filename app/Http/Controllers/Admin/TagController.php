@@ -9,14 +9,23 @@ use App\Models\Tag;
 
 class TagController extends Controller
 {
-    
+
+    //protegendo  as rotas 
+    public function __construct()
+    {
+        $this->middleware('can:admin.tags.index')->only('index');
+        $this->middleware('can:admin.tags.create')->only('create', 'store');
+        $this->middleware('can:admin.tags.edit')->only('edit', 'update');
+        $this->middleware('can:admin.tags.destroy')->only('destroy');
+    }
+
     public function index()
     {
         $tags = Tag::all();
         return view('admin.tags.index', compact('tags'));
     }
 
-   
+
     public function create()
     {
         $colors = [
@@ -30,7 +39,7 @@ class TagController extends Controller
         return view('admin.tags.create', compact('colors'));
     }
 
-   
+
     public function store(Request $request)
     {
         $request->validate([
@@ -43,13 +52,13 @@ class TagController extends Controller
         return redirect()->route('admin.tags.edit', compact('tag'))->with('info', 'A etiqueta foi criada com sucesso');
     }
 
-    
-    public function show($tag)
-    {
-        return view('admin.tags.show', compact('tag'));
-    }
+    //função eliminada que deve ser declarada nas rotas, em except
+    // public function show($tag)
+    // {
+    //     return view('admin.tags.show', compact('tag'));
+    // }
 
-    
+
     public function edit(Tag $tag)
     {
         $colors = [
@@ -63,7 +72,7 @@ class TagController extends Controller
         return view('admin.tags.edit', compact('tag', 'colors'));
     }
 
-    
+
     public function update(Request $request, Tag $tag)
     {
         $request->validate([
@@ -76,7 +85,7 @@ class TagController extends Controller
         return redirect()->route('admin.tags.edit', $tag)->with('info', 'A etiqueta foi atualizada com sucesso');
     }
 
-   
+
     public function destroy(Tag $tag)
     {
         $tag->delete();

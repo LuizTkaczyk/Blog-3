@@ -20,6 +20,10 @@ class DatabaseSeeder extends Seeder
         //criando uma pasta
         Storage::makeDirectory('posts');
 
+
+        //chamando o metodo roleSeeder
+        $this->call(RoleSeeder::class);
+
         //Incluindo os dados falsos no bd através da classe UserSeeder
         $this->call(UserSeeder::class);
         Category::factory(4)->create();

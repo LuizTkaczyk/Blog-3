@@ -3,7 +3,11 @@
 @section('title', 'Laravel')
 
 @section('content_header')
-    <a class="btn btn-secondary float-right" href="{{ route('admin.tags.create') }}">Criar nova Tag</a>
+
+    @can('admin.tags.create')
+        <a class="btn btn-secondary float-right" href="{{ route('admin.tags.create') }}">Criar nova Tag</a>
+    @endcan
+
     <h1>Mostrar lista de tags</h1>
 @stop
 
@@ -17,7 +21,7 @@
 
     @endif
 
-    
+
     <div class="card">
         <div class="card-body">
             <table class="table table-striped">
@@ -33,19 +37,28 @@
                         <tr>
                             <td>{{ $tag->id }}</td>
                             <td>{{ $tag->name }}</td>
-
                             <td width="10px">
-                                <a class="btn btn-primary btn-sm" href="{{ route('admin.tags.edit', $tag) }}">Editar</a>
+                                {{-- com a tag can, a opção somente aparecerá para o usuario adm --}}
+                                @can('admin.tags.edit')
+
+                                    <a class="btn btn-primary btn-sm" href="{{ route('admin.tags.edit', $tag) }}">Editar</a>
+                                @endcan
                             </td>
 
+
+
                             <td width="10px">
-                                <form action="{{ route('admin.tags.destroy', $tag) }}" method="POST">
-                                    @csrf
-                                    @method('delete')
+                                {{-- com a tag can, a opção somente aparecerá para o usuario adm --}}
+                                @can('admin.tags.destroy')
+                                    <form action="{{ route('admin.tags.destroy', $tag) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
 
-                                    <button class="btn btn-danger btn-sm" type="submit">Excluir</button>
+                                        <button class="btn btn-danger btn-sm" type="submit">Excluir</button>
 
-                                </form>
+                                    </form>
+                                @endcan
+
 
                             </td>
                         </tr>

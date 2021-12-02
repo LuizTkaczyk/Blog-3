@@ -17,7 +17,7 @@ class PostObserver
     }
 
     
-    //o eveto delete será chamado cadas vez que um post for exluido, assim excluindo a imagem da pasta de imagens
+    //o evento delete será chamado cadas vez que um post for exluido, assim excluindo a imagem da pasta de imagens
     public function deleting(Post $post)
     {
         if($post->image){

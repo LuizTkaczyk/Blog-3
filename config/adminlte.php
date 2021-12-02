@@ -247,36 +247,55 @@ return [
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'Painel',
-            'route'         => 'admin.home',
-            'icon'        => 'fas fa-tachometer-alt',
+            'text'  => 'Painel',
+            'route' => 'admin.home',
+            'icon'  => 'fas fa-tachometer-alt',
+            'can' => 'admin.home' //com essa diretiva, somente usuarios permitidos poderão acessar os links de criar tag e criar categorias
 
         ],
-        ['header' => 'Administrador'],
+        [
+            'text'  => 'Usuarios',
+            'route' => 'admin.users.index',
+            'icon'  => 'fas fa-users fa-fw',
+            'can' => 'admin.users.index' //com essa diretiva, somente usuarios permitidos poderão acessar os links de criar tag e criar categorias
+
+        ],
+        [
+            'text'  => 'Funções administrativas',
+            'route' => 'admin.roles.index',
+            'icon'  => 'fas fa-users-cog fa-fw',
+            // 'can' => 'admin.users.index' //com essa diretiva, somente usuarios permitidos poderão acessar os links de criar tag e criar categorias
+
+        ],
+
         [
             'text' => 'Categorias',
             'route'  => 'admin.categories.index',
             'icon' => 'fab fa-fw fa-buffer ',
-            'active' => ['admin/categories*']
+            'active' => ['admin/categories*'],
+            'can' => 'admin.categories.index' //com essa diretiva, somente usuarios permitidos poderão acessar os links de criar tag e criar categorias
 
         ],
         [
             'text' => 'Tags',
             'route'  => 'admin.tags.index',
             'icon' => 'far fa-fw fa-bookmark',
-            'active' => ['admin/tags*']
+            'active' => ['admin/tags*'],
+            'can' => 'admin.tags.index' //com essa diretiva, somente usuarios permitidos poderão acessar os links de criar tag e criar categorias
         ],
 
         ['header' => 'Opções do Blog'],
         [
-            'text'       => 'Lista de postagens',
-            'route'        => 'admin.posts.index',
-            'icon' => 'fas fa-fw fa-clipboard'
+            'text' => 'Lista de postagens',
+            'route'  => 'admin.posts.index',
+            'icon' => 'fas fa-fw fa-clipboard',
+            'can' => 'admin.posts.index'
         ],
         [
-            'text'       => 'Criar nova postagem',
-            'route'        => 'admin.posts.create',
-            'icon' => 'fas fa-fw fa-file'
+            'text'   => 'Criar nova postagem',
+            'route'  => 'admin.posts.create',
+            'icon' => 'fas fa-fw fa-file',
+            'can' => 'admin.posts.index'
         ],
     ],
 

@@ -9,6 +9,15 @@ use com;
 
 class CategoryController extends Controller
 {
+
+    //protegendo  as rotas 
+    public function __construct()
+    {
+        $this->middleware('can:admin.categories.index')->only('index');
+        $this->middleware('can:admin.categories.create')->only('create','store');
+        $this->middleware('can:admin.categories.edit')->only('edit','update');
+        $this->middleware('can:admin.categories.destroy')->only('destroy');
+    }
    
     public function index()
     {
@@ -36,12 +45,12 @@ class CategoryController extends Controller
         return redirect()->route('admin.categories.edit', $category)->with('info', 'A categoria foi criada com sucesso!');
     }
     
-    
-    public function show(Category $category)
-    {
-        return view('admin.categories.show', compact('category'));
+    //função eliminada que deve ser declarada nas rotas, em except
+    // public function show(Category $category)
+    // {
+    //     return view('admin.categories.show', compact('category'));
         
-    }
+    // }
     
     
     public function edit(Category $category)
