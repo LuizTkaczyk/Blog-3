@@ -42,7 +42,7 @@ class CategoryController extends Controller
         
         $category = Category::create($request->all());
 
-        return redirect()->route('admin.categories.edit', $category)->with('info', 'A categoria foi criada com sucesso!');
+        return redirect()->route('admin.categories.index', $category)->with('info', 'A categoria foi criada com sucesso!');
     }
     
     //função eliminada que deve ser declarada nas rotas, em except

@@ -7,13 +7,14 @@
 @stop
 
 @section('content')
-    <p>Bem vindo ao painel de administração.</p>
-@stop
+    <div class="card">
+        <div class="card-body">
+            {!! Form::open(['route' => 'admin.roles.store']) !!}
+                
+                @include('admin.roles.partials.form')
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
-@section('js')
-    <script> console.log('Hi!'); </script>
+                {!! Form::submit('Criar função', ['class' => 'btn btn-primary']) !!}
+            {!! Form::close() !!}
+        </div>
+    </div>
 @stop

@@ -7,13 +7,23 @@
 @stop
 
 @section('content')
-    <p>Bem vindo ao painel de administração.</p>
-@stop
 
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
+    @if (session('info'))
+        <div class="alert alert-success">
+            {{session('info')}}
+        </div>
+    
+        
+    @endif
 
-@section('js')
-    <script> console.log('Hi!'); </script>
+
+    <div class="card">
+        <div class="card-body">
+            {!! Form::model($role, ['route' => ['admin.roles.update',$role], 'method' => 'put']) !!}
+
+            @include('admin.roles.partials.form')
+            {!! Form::submit('Editar função', ['class' => 'btn btn-primary']) !!}
+            {!! Form::close() !!}
+        </div>
+    </div>
 @stop

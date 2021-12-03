@@ -49,7 +49,7 @@ class TagController extends Controller
         ]);
 
         $tag = Tag::create($request->all());
-        return redirect()->route('admin.tags.edit', compact('tag'))->with('info', 'A etiqueta foi criada com sucesso');
+        return redirect()->route('admin.tags.index', compact('tag'))->with('info', 'A etiqueta foi criada com sucesso');
     }
 
     //função eliminada que deve ser declarada nas rotas, em except
