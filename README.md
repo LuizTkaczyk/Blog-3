@@ -6,5 +6,3 @@ php artisan storage:link
 
 ### Ao criar um controller com a tag -r , é criado toda a estrutura de um crud, ex:
 php artisan make:controller Admin/CategoryController -r
-
-https://www.youtube.com/watch?v=vPMXvLFJQrs&list=PLZ2ovOgdI-kWWS9aq8mfUDkJRfYib-SvF&index=67 7min
