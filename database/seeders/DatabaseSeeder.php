@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        //deletando os arquivos da pasta posts
         Storage::deleteDirectory('posts');
         //criando uma pasta
         Storage::makeDirectory('posts');
